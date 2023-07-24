@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./Wordle_styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/Wordle_styles.css">
 </head>
 <body>
 
@@ -16,8 +16,6 @@
         <a href="./Game_description.html" target="_blank">Game Description</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a href="./Company.html" target="_blank">Company</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a href="./Contact_us.html" target="_blank">Contact us</a>
-        <p>game</p>
-    <div>
     
     <div id="game-container">
         <h1> Wordle Game </h1>
@@ -25,11 +23,18 @@
                
                 <!-- word grid will be generated with JS -->
                 
-        </div>
-
+    </div>
+        
         <input id="guess-input" type="text" placeholder="Enter guess here">
         <button id="submit-button"> Submit guess </button>
-        </div>
+    </div>
+
+    <!-- script to fetch html file for main page -->
+    <script>
+        fetch("http://localhost:8000")
+        .then(response => response.json())
+        .then(data => console.log(data));
+    </script>
 
 </body>
 </html>
