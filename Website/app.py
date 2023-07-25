@@ -6,6 +6,7 @@ import os
 app = FastAPI()
 
 
+
 # mount static files directories (only for static file like css)
 app.mount("/css", StaticFiles(directory="css"), name="css")
 
