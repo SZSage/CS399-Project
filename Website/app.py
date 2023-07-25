@@ -22,3 +22,6 @@ async def read_root():
     with open(os.path.join('html', 'Wordle.html'), 'r') as f:
         html_content = f.read()
     return HTMLResponse(content=html_content, status_code=200)
+
+
+
