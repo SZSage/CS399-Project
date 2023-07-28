@@ -22,19 +22,26 @@
         <div id="word-grid">
                
                 <!-- word grid will be generated with JS -->
-                
+        
     </div>
         
         <input id="guess-input" type="text" placeholder="Enter guess here">
         <button id="submit-button"> Submit guess </button>
+
+        
     </div>
 
+    <div id="guess-result">
+
+    </div>
+    <script src="../js/Game.js"></script>
+    
     <!-- script to fetch html file for main page -->
     <script>
         fetch("http://localhost:8000")
         .then(response => response.json())
         .then(data => console.log(data));
     </script>
-
+    
 </body>
 </html>
