@@ -18,7 +18,7 @@ async def get_data():
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root():
-    # reads Wordle.html file and returns html file
+    # reads Wordle.html file and returns html file with status code 200
     with open(os.path.join('html', 'Wordle.html'), 'r') as f:
         html_content = f.read()
     return HTMLResponse(content=html_content, status_code=200)
