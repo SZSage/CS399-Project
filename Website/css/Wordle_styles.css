@@ -72,6 +72,15 @@ body {
     margin-bottom: 10px;
 }
 
+#empty-box {
+  box-sizing: border-box;
+  width: 5px;
+  height: 8px;
+  margin-right: 2px;
+  border: 1px solid black;
+  text-align: center;
+}
+
 #submit-button {
     padding: 10px 20px;
     background-color: #007BFF;

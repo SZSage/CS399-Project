@@ -1,8 +1,0 @@
-.empty-box {
-  box-sizing: border-box;
-  width: 5px;
-  height: 8px;
-  margin-right: 2px;
-  border: 1px solid black;
-  text-align: center;
-}
