@@ -6,7 +6,11 @@ let isSubmitClicked = false;
 
 // Function to get a random image name from the array
 function getRandomImageName() {
-  const randomIndex = getRandom(0, imageNames.length - 1);
+  let randomIndex;
+  do {
+    randomIndex = getRandom(0, imageNames.length - 1);
+  } while (randomIndex === currentWordIndex); // Repeat until we get a different image
+
   currentWordIndex = randomIndex;
   return imageNames[randomIndex];
 }
@@ -37,10 +41,13 @@ function createEmptyBoxes(numBoxes) {
       }
     });
 
-    // Listen to keydown event for "Enter" key
+    // Listen to keydown event for "Enter" and "Backspace" keys
     box.addEventListener('keydown', function(event) {
       if (event.key === "Enter") {
         processGuess();
+      } else if (event.key === "Backspace" && box.value === '' && i > 0) {
+        // If backspace is pressed in an empty box, move focus to the previous box
+        boxesContainer.children[i - 1].focus();
       }
     });
 
@@ -75,11 +82,34 @@ function processGuess() {
     userGuess += box.value;
   });
 
+  const currentWord = imageNames[currentWordIndex];
+
+  // Check if the length of the user's guess matches the length of the current word
+  if (userGuess.length !== currentWord.length) {
+    // If lengths don't match, display a prompt and don't process the guess
+    alert('Guesses must match character amount in the string!');
+    return;
+  }
+
   // Print the guess content to the web page
   printUserGuess(userGuess);
 
   // Check user's guess against the current word and clear the boxes
   compareGuessAndClear(guessBoxes);
+
+  // Check if the guess was correct
+  let isCorrect = true;
+  for (let i = 0; i < guessBoxes.length; i++) {
+    if (!guessBoxes[i].classList.contains("correct-letter")) {
+      isCorrect = false;
+      break;
+    }
+  }
+
+  // If the guess was correct, set a new random image
+  if (isCorrect) {
+    setRandomImage();
+  }
 
   // Focus on the first box
   const boxesContainer = document.getElementById("boxes-container");
