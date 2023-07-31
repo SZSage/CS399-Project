@@ -39,10 +39,28 @@ function compareGuess(userGuess) {
   const guessResultContainer = document.getElementById("guess-result");
   guessResultContainer.innerHTML = ''; // Clear previous results
 
-  for (let i = 0; i < currentWord.length; i++) {
+  for (let i = 0; i < userGuess.length; i++) {
     const letterSpan = document.createElement("span");
     letterSpan.textContent = userGuess[i] || ''; // Handle case when userGuess is shorter than the word
-    letterSpan.style.color = userGuess[i] === currentWord[i] ? "green" : "red";
+
+    // Check if there is a substring in currentWord that matches userGuess up to index i
+    let isMatch = false;
+    for (let j = 0; j <= currentWord.length - i; j++) {
+      if (currentWord.substr(j, i + 1).toLowerCase() === userGuess.substr(0, i + 1).toLowerCase()) {
+        isMatch = true;
+        break;
+      }
+    }
+
+    letterSpan.style.color = isMatch ? "green" : "red";
+    guessResultContainer.appendChild(letterSpan);
+  }
+
+  // If the word is longer than the user guess, fill the remaining with red color
+  for (let i = userGuess.length; i < currentWord.length; i++) {
+    const letterSpan = document.createElement("span");
+    letterSpan.textContent = currentWord[i] || '';
+    letterSpan.style.color = "red";
     guessResultContainer.appendChild(letterSpan);
   }
 }
