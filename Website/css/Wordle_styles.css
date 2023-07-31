@@ -72,10 +72,9 @@ body {
     margin-bottom: 10px;
 }
 
-#empty-box {
-  box-sizing: border-box;
-  width: 5px;
-  height: 8px;
+.empty-box {
+  width: 20px;
+  height: 32px;
   margin-right: 2px;
   border: 1px solid black;
   text-align: center;

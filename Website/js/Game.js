@@ -2,6 +2,7 @@
 
 const imageNames = ["America", "Australia", "Brazil", "China", "France"];
 let currentWordIndex = 0; // Index to keep track of the current word from the array
+let isSubmitClicked = false;
 
 // Function to get a random image name from the array
 function getRandomImageName() {
@@ -26,39 +27,45 @@ function createEmptyBoxes(numBoxes) {
     const box = document.createElement("input");
     box.type = "text";
     box.maxLength = "1"; // limit the input length to 1 character
-    box.disabled = true; // disable the input field
     box.classList.add("empty-box"); // you can define "empty-box" class in your css
+
+    // Listen to the input event
+    box.addEventListener('input', function() {
+      // If user enters a value and there is a next box, focus it
+      if (box.value !== '' && i < numBoxes - 1) {
+        boxesContainer.children[i + 1].focus();
+      }
+    });
+
     boxesContainer.appendChild(box);
   }
 }
 
 // Add an event listener to the "Submit guess" button
 document.getElementById("submit-button").addEventListener("click", function() {
-  // Retrieve the value of the input field (the user's guess)
-  const guessInput = document.getElementById("guess-input");
-  const userGuess = guessInput.value;
-
-  // Print the guess content to the web page
-  printUserGuess(userGuess);
-
-  // Clear the input field after printing the guess
-  guessInput.value = '';
-
-  // Check user's guess against the current word
-  compareGuess(userGuess);
+  isSubmitClicked = true; // Submit button is clicked
+  compareGuess(); // Call the compareGuess function
 });
 
 // Function to compare the user's guess with the current word from the array
-function compareGuess(userGuess) {
-  const currentWord = imageNames[currentWordIndex];
-  const guessResultContainer = document.getElementById("guess-result");
-  guessResultContainer.innerHTML = ''; // Clear previous results
+function compareGuess() {
+  // Do nothing if Submit button isn't clicked yet
+  if (!isSubmitClicked) return;
 
-  for (let i = 0; i < currentWord.length; i++) {
-    const letterSpan = document.createElement("span");
-    letterSpan.textContent = userGuess[i] || ''; // Handle case when userGuess is shorter than the word
-    letterSpan.style.color = userGuess[i] === currentWord[i] ? "green" : "red";
-    guessResultContainer.appendChild(letterSpan);
+  const currentWord = imageNames[currentWordIndex];
+  const boxesContainer = document.getElementById("boxes-container");
+  const inputBoxes = boxesContainer.getElementsByClassName("empty-box");
+
+  for (let i = 0; i < inputBoxes.length; i++) {
+    if (inputBoxes[i].value === '') {
+      inputBoxes[i].style.backgroundColor = 'white'; // No input yet
+    } else if (inputBoxes[i].value === currentWord[i]) {
+      inputBoxes[i].style.backgroundColor = 'green'; // Correct character in correct position
+    } else if (currentWord.includes(inputBoxes[i].value)) {
+      inputBoxes[i].style.backgroundColor = 'yellow'; // Correct character in wrong position
+    } else {
+      inputBoxes[i].style.backgroundColor = 'grey'; // Incorrect character
+    }
   }
 }
 
