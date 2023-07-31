@@ -24,7 +24,7 @@ document.getElementById("submit-button").addEventListener("click", function() {
   const userGuess = guessInput.value;
 
   // Print the guess content to the web page
-  printUserGuess(userGuess);
+  //printUserGuess(userGuess);
 
   // Clear the input field after printing the guess
   guessInput.value = '';
@@ -47,18 +47,18 @@ function compareGuess(userGuess) {
   }
 }
 
-// Function to print the user's guess content to the web page
-function printUserGuess(guess) {
-  // Create a new paragraph element to display the guess
-  const guessResult = document.createElement("p");
+// // Function to print the user's guess content to the web page
+// function printUserGuess(guess) {
+//   // Create a new paragraph element to display the guess
+//   const guessResult = document.createElement("p");
 
-  // Set the text content of the paragraph to the user's guess
-  guessResult.textContent = `Your guess: ${guess}`;
+//   // Set the text content of the paragraph to the user's guess
+//   guessResult.textContent = `Your guess: ${guess}`;
 
-  // Append the paragraph to the game container or any other suitable element
-  const guessResultContainer = document.getElementById("guess-result");
-  guessResultContainer.appendChild(guessResult);
-}
+//   // Append the paragraph to the game container or any other suitable element
+//   const guessResultContainer = document.getElementById("guess-result");
+//   guessResultContainer.appendChild(guessResult);
+// }
 
 // Function to get random integer from N to M
 function getRandom(N, M) {
