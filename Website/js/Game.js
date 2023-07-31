@@ -15,6 +15,21 @@ function setRandomImage() {
   const imageName = getRandomImageName();
   const imgElement = document.getElementById("game-img");
   imgElement.src = `../images/${imageName}.jpg`;
+  createEmptyBoxes(imageName.length); // Call function to create empty boxes
+}
+
+// Function to create empty boxes
+function createEmptyBoxes(numBoxes) {
+  const boxesContainer = document.getElementById("boxes-container");
+  boxesContainer.innerHTML = ''; // Clear previous boxes
+  for (let i = 0; i < numBoxes; i++) {
+    const box = document.createElement("input");
+    box.type = "text";
+    box.maxLength = "1"; // limit the input length to 1 character
+    box.disabled = true; // disable the input field
+    box.classList.add("empty-box"); // you can define "empty-box" class in your css
+    boxesContainer.appendChild(box);
+  }
 }
 
 // Add an event listener to the "Submit guess" button
