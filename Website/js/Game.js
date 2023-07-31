@@ -37,49 +37,107 @@ function createEmptyBoxes(numBoxes) {
       }
     });
 
+    // Listen to keydown event for "Enter" key
+    box.addEventListener('keydown', function(event) {
+      if (event.key === "Enter") {
+        processGuess();
+      }
+    });
+
     boxesContainer.appendChild(box);
+  }
+
+  // Focus on the first box
+  if (numBoxes > 0) {
+    boxesContainer.children[0].focus();
+  }
+}
+
+function compareGuessAndClear(guessBoxes) {
+  // Call the original compareGuess function first
+  compareGuess(guessBoxes);
+
+  // Then clear the boxes
+  for (let i = 0; i < guessBoxes.length; i++) {
+    guessBoxes[i].value = '';  // clear the box
+    guessBoxes[i].className = "empty-box";  // reset the class name
   }
 }
 
 // Add an event listener to the "Submit guess" button
-document.getElementById("submit-button").addEventListener("click", function() {
-  isSubmitClicked = true; // Submit button is clicked
-  compareGuess(); // Call the compareGuess function
-});
+document.getElementById("submit-button").addEventListener("click", processGuess);
+
+function processGuess() {
+  // Collect user's guesses from each input box
+  const guessBoxes = document.querySelectorAll('.empty-box');
+  let userGuess = '';
+  guessBoxes.forEach((box) => {
+    userGuess += box.value;
+  });
+
+  // Print the guess content to the web page
+  printUserGuess(userGuess);
+
+  // Check user's guess against the current word and clear the boxes
+  compareGuessAndClear(guessBoxes);
+
+  // Focus on the first box
+  const boxesContainer = document.getElementById("boxes-container");
+  if (boxesContainer.children.length > 0) {
+    boxesContainer.children[0].focus();
+  }
+}
 
 // Function to compare the user's guess with the current word from the array
-function compareGuess() {
-  // Do nothing if Submit button isn't clicked yet
-  if (!isSubmitClicked) return;
-
+function compareGuess(guessBoxes) {
   const currentWord = imageNames[currentWordIndex];
-  const boxesContainer = document.getElementById("boxes-container");
-  const inputBoxes = boxesContainer.getElementsByClassName("empty-box");
+  
+  for (let i = 0; i < currentWord.length; i++) {
+    let box = guessBoxes[i];
 
-  for (let i = 0; i < inputBoxes.length; i++) {
-    if (inputBoxes[i].value === '') {
-      inputBoxes[i].style.backgroundColor = 'white'; // No input yet
-    } else if (inputBoxes[i].value === currentWord[i]) {
-      inputBoxes[i].style.backgroundColor = 'green'; // Correct character in correct position
-    } else if (currentWord.includes(inputBoxes[i].value)) {
-      inputBoxes[i].style.backgroundColor = 'yellow'; // Correct character in wrong position
+    if (box.value === '') {
+      box.classList.remove("correct-letter");
+      box.classList.remove("wrong-letter");
+      box.classList.remove("right-letter");
+    } else if (box.value === currentWord[i]) {
+      box.classList.remove("wrong-letter");
+      box.classList.remove("right-letter");
+      box.classList.add("correct-letter");
+    } else if (currentWord.includes(box.value)) {
+      box.classList.remove("correct-letter");
+      box.classList.remove("wrong-letter");
+      box.classList.add("right-letter");
     } else {
-      inputBoxes[i].style.backgroundColor = 'grey'; // Incorrect character
+      box.classList.remove("correct-letter");
+      box.classList.remove("right-letter");
+      box.classList.add("wrong-letter");
     }
   }
 }
 
 // Function to print the user's guess content to the web page
 function printUserGuess(guess) {
-  // Create a new paragraph element to display the guess
-  const guessResult = document.createElement("p");
-
-  // Set the text content of the paragraph to the user's guess
-  guessResult.textContent = `Your guess: ${guess}`;
-
-  // Append the paragraph to the game container or any other suitable element
   const guessResultContainer = document.getElementById("guess-result");
-  guessResultContainer.appendChild(guessResult);
+  const guessRow = document.createElement("div");
+  guessRow.classList.add("guess-row"); // you can define "guess-row" class in your CSS for styling
+
+  for (let i = 0; i < guess.length; i++) {
+    const guessBox = document.createElement("span");
+    guessBox.classList.add("guess-box"); // you can define "guess-box" class in your CSS for styling
+    guessBox.textContent = guess[i];
+
+    if (guess[i] === imageNames[currentWordIndex][i]) {
+      guessBox.classList.add("correct-letter");
+    } else if (imageNames[currentWordIndex].includes(guess[i])) {
+      guessBox.classList.add("right-letter");
+    } else {
+      guessBox.classList.add("wrong-letter");
+    }
+    
+    guessRow.appendChild(guessBox);
+  }
+
+  guessResultContainer.appendChild(guessRow);
 }
 
 // Function to get random integer from N to M

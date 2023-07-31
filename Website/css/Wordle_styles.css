@@ -80,6 +80,32 @@ body {
   text-align: center;
 }
 
+.guess-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.guess-box {
+  width: 20px;
+  height: 32px;
+  margin-right: 2px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.correct-letter {
+  background-color: green;
+}
+
+.wrong-letter {
+  background-color: grey;
+}
+
+.right-letter {
+  background-color: yellow;
+}
+
 #submit-button {
     padding: 10px 20px;
     background-color: #007BFF;
