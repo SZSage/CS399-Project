@@ -8,42 +8,34 @@
 </head>
 <body>
 
-    <div class="content-container">
+    <header>
         <img src="#" alt="Logo of company">
-        <a href="./Login.html" target="_blank">login</a>
+        <nav>
+            <a href="./Login.html" target="_blank">Login</a>
+            <a href="./Game_description.html" target="_blank">Game Description</a>
+            <a href="./Company.html" target="_blank">Company</a>
+            <a href="./Contact_us.html" target="_blank">Contact us</a>
+        </nav>
         <h1>Placele</h1>
         <hr>
-        <a href="./Game_description.html" target="_blank">Game Description</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="./Company.html" target="_blank">Company</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="./Contact_us.html" target="_blank">Contact us</a>
-        <br>
-        <br>
-        <br>
+    </header>
     
-    <div>
-        <img src="" alt="game image" id="game-img">
-        <br>
-        <br>
-        <br>
-    </div>    
+    <main>
+        <section class="center-content">
+            <img src="" alt="game image" id="game-img">
+        </section>    
 
-    <div id="game-container">
-        <h1> Wordle Game </h1>
-        <div id="word-grid">
-               
+        <section id="game-container" class="center-content">
+            <h1> Enter Guess Here </h1>
+            <div id="boxes-container">   
                 <!-- word grid will be generated with JS -->
-        
-    </div>
-        
-        <input id="guess-input" type="text" placeholder="Enter guess here">
-        <button id="submit-button"> Submit guess </button>
+            </div>
+            <button id="submit-button"> Submit guess </button>
+        </section>
 
-        
-    </div>
-
-    <div id="guess-result">
-        <!-- guess result will show here -->
-    </div>
+        <section id="guess-result">
+        </section>
+    </main>
 
     <script src="../js/Game.js"></script>
 
@@ -53,6 +45,5 @@
         .then(response => response.json())
         .then(data => console.log(data));
     </script>
-    
 </body>
 </html>
