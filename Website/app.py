@@ -25,5 +25,9 @@ async def read_root():
         html_content = f.read()
     return HTMLResponse(content=html_content, status_code=200)
 
-
+@app.get("/game_description", response_class=HTMLResponse)
+async def read_description():
+    with open(os.path.join("html", "Game_description.html", "r") as file:
+        html_content = file.read()
+    return HTMLReponse(content=html_content, status_code=200)
 
