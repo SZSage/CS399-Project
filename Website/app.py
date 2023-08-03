@@ -21,13 +21,13 @@ async def get_data():
 @app.get("/", response_class=HTMLResponse)
 async def read_root():
     # reads Wordle.html file and returns html file with status code 200
-    with open(os.path.join('html', 'Wordle.html'), 'r') as f:
-        html_content = f.read()
+    with open(os.path.join('html', 'Wordle.html'), 'r') as file:
+        html_content = file.read()
     return HTMLResponse(content=html_content, status_code=200)
 
 @app.get("/game_description", response_class=HTMLResponse)
 async def read_description():
-    with open(os.path.join("html", "Game_description.html", "r") as file:
+    with open(os.path.join("html", "Game_description.html"), "r") as file:
         html_content = file.read()
-    return HTMLReponse(content=html_content, status_code=200)
+    return HTMLResponse(content=html_content, status_code=200)
 
