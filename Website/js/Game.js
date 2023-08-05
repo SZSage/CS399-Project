@@ -102,9 +102,6 @@ function processGuess() {
     // Create a guess row from the boxes
     createGuessRowFromBoxes(guessBoxes);
 
-    // Clear the boxes
-    clearBoxes(guessBoxes);
-
     // Check if the guess was correct
     let isCorrect = true;
     for (let i = 0; i < guessBoxes.length; i++) {
@@ -113,7 +110,7 @@ function processGuess() {
             break;
         }
     }
-
+    clearBoxes(guessBoxes);
     // If the guess was correct, set a new random image
     if (isCorrect) {
         setRandomImage();
