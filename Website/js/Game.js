@@ -111,9 +111,10 @@ function processGuess() {
         }
     }
     clearBoxes(guessBoxes);
-    // If the guess was correct, set a new random image
+    // If the guess was correct, set a new random image and remove all guess rows from previous guesses
     if (isCorrect) {
         setRandomImage();
+        removeGuessRows(guessBoxes);
     }
 
     // Focus on the first box
@@ -180,6 +181,20 @@ function createGuessRowFromBoxes(guessBoxes) {
     guessResultContainer.appendChild(guessRow);
 }
 
+// removes all guess rows from the guess result container
+function removeGuessRows(guessBoxes) {
+    // get the guess result container
+    const guessResultContainer = document.getElementById("guess-result");
+    //get all guess rows
+    const guessRows = guessResultContainer.children;
+    // clear the guess result container
+    guessResultContainer.innerHTML = '';
+    
+    for (let i = 0; i < guessRows.length; i++) {
+        // remove the guess row from the guess result container
+        guessResultContainer.removeChild(guessRows[i]);
+    }
+}
 
 // Function to get random integer from N to M
 function getRandom(N, M) {
