@@ -64,6 +64,9 @@ function createEmptyBoxes(numBoxes) {
 
         // Listen to the input event
         box.addEventListener('input', function() {
+            // Convert value to uppercase
+            box.value = box.value.toUpperCase();
+
             // If user enters a value and there is a next box, focus it
             if (box.value !== '' && i < numBoxes - 1) {
                 boxesContainer.children[i + 1].focus();
@@ -110,6 +113,9 @@ function processGuess() {
         return;
     }
 
+    // Clear keyboard highlights
+    clearKeyColors();
+
     // Check user's guess against the current word
     compareGuess(guessBoxes);
 
@@ -124,6 +130,7 @@ function processGuess() {
             break;
         }
     }
+
     clearBoxes(guessBoxes);
 
     // If the guess was correct, set a new random image and remove all guess rows from previous guesses
@@ -169,20 +176,44 @@ function clearBoxes(guessBoxes) {
 
 // Function to compare the user's guess with the current word from the array
 function compareGuess(guessBoxes) {
-    const currentWord = currentCountry.name.toUpperCase(); // To handle case-insensitive comparison
+    const currentWord = currentCountry.name.toUpperCase();
     const userGuess = Array.from(guessBoxes).map(box => box.value.toUpperCase()).join('');
-
+  
     for (let i = 0; i < currentWord.length; i++) {
-        let box = guessBoxes[i];
-        if (box.value.toUpperCase() === currentWord[i]) { // correct letter, correct spot
-            box.classList.add("correct-letter");
-        } else if (currentWord.includes(box.value.toUpperCase())) { // correct letter, wrong spot
-            box.classList.add("right-letter");
-        } else { // letter not in the word at all
-            box.classList.add("wrong-letter");
-        }
+      let box = guessBoxes[i];
+      let key = document.querySelector(`#keyboard .key[onclick="handleKeyPress('${box.value.toUpperCase()}')"]`);
+  
+      if (box.value.toUpperCase() === currentWord[i]) {
+        box.classList.add("correct-letter");
+        key.classList.add("correct-letter");
+      } else if (currentWord.includes(box.value.toUpperCase())) {
+        box.classList.add("right-letter");
+        key.classList.add("right-letter");
+      } else {
+        box.classList.add("wrong-letter");
+        key.classList.add("wrong-letter");
+      }
+    }
+  }
+
+function handleKeyPress(letter) {
+    // Find the first empty box
+    const boxes = document.querySelectorAll('.empty-box');
+    for (const box of boxes) {
+      if (box.value === '') {
+        box.value = letter;
+        break;
+      }
     }
 }
+
+function clearKeyColors() {
+    const keys = document.querySelectorAll('#keyboard .key');
+    keys.forEach(key => {
+      key.classList.remove('correct-letter', 'right-letter', 'wrong-letter');
+    });
+}
+  
 
 /* 
     Function to create a guess row from the boxes after the user submits a guess to display the result
