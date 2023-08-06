@@ -1,6 +1,7 @@
 
 // variable to keep track of current country
 let currentCountry = null; 
+let incorrectAttempts = 0;
 let score=0;
 let attemptTime=5
 
@@ -45,6 +46,7 @@ function setRandomImage() {
         document.getElementById("game-img").src = flagUrl;
         // create empty boxes for user to guess
         createEmptyBoxes(currentCountry.name.length);
+        incorrectAttempts = 0 // Reset incorrect attempts
     }).catch(error => {
         console.error('Error:', error); // if there's an error, it will be logged in the console
     });
@@ -113,9 +115,6 @@ function processGuess() {
         return;
     }
 
-    // Clear keyboard highlights
-    clearKeyColors();
-
     // Check user's guess against the current word
     compareGuess(guessBoxes);
 
@@ -135,25 +134,33 @@ function processGuess() {
 
     // If the guess was correct, set a new random image and remove all guess rows from previous guesses
     if (!isCorrect){
+        incorrectAttempts++;
+        if (incorrectAttempts == 3) {
+            showHint();
+        }
         attemptTime--;
         setAttempt();
-    } else{
+    } else {
+        clearKeyColors();
         setRandomImage();
         removeGuessRows(guessBoxes);
         score+=10;
         setScore();
         attemptTime=5;
+        incorrectAttempts = 0;
         setAttempt();
     }
 
     // If the guess was over the attempt times than restart a new game
     if (attemptTime<=0){
         alert(`Game over, correct answer is ${currentCountry.name.toUpperCase()}`)
+        clearKeyColors();
         setRandomImage();
         removeGuessRows(guessBoxes);
         score-=10;
         setScore();
         attemptTime=5;
+        incorrectAttempts = 0;
         setAttempt();
     }
     
@@ -164,6 +171,12 @@ function processGuess() {
         boxesContainer.children[0].focus();
     }
 }
+
+function showHint() {
+    const hint = currentCountry.continent;
+    alert(`Hint: The country is located in ${hint}`);
+}
+
 
 // function to clear boxes
 function clearBoxes(guessBoxes) {
