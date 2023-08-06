@@ -1,6 +1,20 @@
 
 // variable to keep track of current country
 let currentCountry = null; 
+let score=0;
+let attemptTime=5
+
+//Set Score
+function setScore(){
+    let curscore=document.getElementById("game-score");
+    curscore.innerHTML=`Score: ${score}`;
+}
+
+//Set Attempt
+function setAttempt(){
+    let curscore=document.getElementById("game-attempt");
+    curscore.innerHTML=`Attempt left: ${attemptTime}`;
+}
 
 // picks random country to ensure no repeats
 async function getRandomCountry() {
@@ -111,11 +125,31 @@ function processGuess() {
         }
     }
     clearBoxes(guessBoxes);
+
     // If the guess was correct, set a new random image and remove all guess rows from previous guesses
-    if (isCorrect) {
+    if (!isCorrect){
+        attemptTime--;
+        setAttempt();
+    } else{
         setRandomImage();
         removeGuessRows(guessBoxes);
+        score+=10;
+        setScore();
+        attemptTime=5;
+        setAttempt();
     }
+
+    // If the guess was over the attempt times than restart a new game
+    if (attemptTime<=0){
+        alert(`Game over, correct answer is ${currentCountry.name.toUpperCase()}`)
+        setRandomImage();
+        removeGuessRows(guessBoxes);
+        score-=10;
+        setScore();
+        attemptTime=5;
+        setAttempt();
+    }
+    
 
     // Focus on the first box
     const boxesContainer = document.getElementById("boxes-container");
