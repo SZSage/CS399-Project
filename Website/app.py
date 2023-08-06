@@ -4,6 +4,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pymongo import MongoClient
+from continent_mapping import continent_mapping
 import json
 import os
 
@@ -40,7 +41,7 @@ async def get_countries():
     with open("country_codes.json") as json_file:
         data = json.load(json_file)
     # convert dictionary to a list of dictionaries
-    countries = [{"code": code, "name": name} for code, name in data.items()]
+    countries = [{"code": code, "name": name, "continent": continent_mapping[code]} for code, name in data.items()]
     return countries
 
 """
@@ -63,7 +64,6 @@ async def read_root():
     with open(os.path.join('html', 'Wordle.html'), 'r') as file:
         html_content = file.read()
     return HTMLResponse(content=html_content, status_code=200)
-
 
 @app.get("/Game_description", response_class=HTMLResponse)
 async def read_description():
