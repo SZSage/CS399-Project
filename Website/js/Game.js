@@ -20,7 +20,7 @@ function setAttempt(){
 // picks random country to ensure no repeats
 async function getRandomCountry() {
     // fetch countries from server
-    const response = await fetch('http://localhost:8000/countries');
+    const response = await fetch('/countries');
     if (!response.ok) {
         console.error(`Error fetching countries: ${response.status}`);
         return;
