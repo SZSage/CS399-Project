@@ -17,21 +17,21 @@ function nextSlide() {
   showSlide(currentSlide);
 }
 
-let interval = setInterval(nextSlide, 1500);
+let interval = setInterval(nextSlide, 3500);
 
 slider.addEventListener('mouseenter', () => {
   clearInterval(interval);
 });
 
 slider.addEventListener('mouseleave', () => {
-  interval = setInterval(nextSlide, 1500);
+  interval = setInterval(nextSlide, 3500);
 });
 
 indicators.forEach((indicator, index) => {
   indicator.addEventListener('click', () => {
     showSlide(index);
     clearInterval(interval);
-    interval = setInterval(nextSlide, 1500);
+    interval = setInterval(nextSlide, 3500);
   });
 });
 
