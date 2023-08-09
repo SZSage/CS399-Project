@@ -1,5 +1,10 @@
 /* wordle_styles.css */
 
+
+/* Visualize Margins and Padding */
+
+
+
 header {
   position: relative;
   display: flex;
@@ -10,6 +15,7 @@ header {
   height: 40px;
   padding: 10px;  /* Added padding around the header */
   background-color: rgb(27, 27, 27);
+  box-sizing: border-box;
 }
 
 .links {
@@ -39,6 +45,8 @@ h2 {
   font-size: 20px;
   color: white;
   margin: 0; 
+  margin-bottom: 10px;
+  display: flex;
 }
 
 hr {
@@ -105,6 +113,7 @@ body {
 
 #game-img {
   max-width: 100%; /* This will ensure that the image doesn't overflow its container */
+  margin-top: 50px;
 }
 
 #image-container {
@@ -257,6 +266,7 @@ body {
     color: white;
     border: none;
     cursor: pointer;
+    border-radius: 4px;
 }
 
 #submit-button:hover {
