@@ -5,21 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="../css/Wordle_styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+
 </head>
 <body>
 
     <header>
-        <img src="#" alt="Logo of company">
-        <nav>
-            <a href="/Login" target="_blank">Login</a>
-            <a href="/Game_description" target="_blank">Game Description</a>
-            <a href="/Company" target="_blank">Company</a>
-            <a href="/Contact_us" target="_blank">Contact us</a>
-        </nav>
-        <h1>Placele</h1>
-        <hr>
-        <span id="game-score">Score: 0</span>
-        <span id="game-attempt">Attempt left: 5</span>
+    <!-- <img src="#" alt="Logo of company"> -->
+        <h1>Guess Flag</h1>
+        <div class="header-details">
+            <nav>
+                <a href="/Login" target="_blank">Login</a>
+                <a href="/Game_description" target="_blank">Game Description</a>
+                <a href="/Company" target="_blank">Company</a>
+                <a href="/Contact_us" target="_blank">Contact us</a>
+            </nav>
+        </div>    
     </header>
     
     <main>
@@ -28,7 +29,9 @@
         </section>    
 
         <section id="game-container" class="center-content">
-            <h1> Enter Guess Here </h1>
+            <span id="game-score">Score: 0</span>
+            <span id="game-attempt">Attempts left: 5</span>
+            <h2> Enter Guess Here </h2>
             <div id="boxes-container">   
                 <!-- word grid will be generated with JS -->
             </div>
@@ -39,7 +42,7 @@
         </section>
 
         <section id="keyboard" class="center-content">
-            <div id="keyboard-row">
+            <div class="keyboard-row">
                 <button class="key" onclick="handleKeyPress('Q')">Q</button>
                 <button class="key" onclick="handleKeyPress('W')">W</button>
                 <button class="key" onclick="handleKeyPress('E')">E</button>
