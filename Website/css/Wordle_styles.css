@@ -1,59 +1,78 @@
 /* wordle_styles.css */
 
-  h1 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  hr {
-    border: none;
-    border-top: 1px solid #ccc;
-    margin: 20px 0;
-  }
-  
-  a {
-    color: #333;
-    text-decoration: none;
-    margin-right: 10px;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
-  p {
-    font-size: 16px;
-    color: #666;
-  }
-
 header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px; /* adjust as needed */
-}
- 
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0;
-    background-color: #fafafa;
-    font-family: Arial, sans-serif;
-    height: 100vh; /* Change this */
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  padding: 10px;  /* Added padding around the header */
+  background-color: rgb(27, 27, 27);
 }
 
-body, html {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
+.links {
+  color: white;
 }
+
+.header-details {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+}
+
+
+nav {
+  display: flex;
+  gap: 10px;
+}
+
+h1 {
+  color: white;
+  font-size: 24px;
+}
+
+h2 {
+  font-size: 20px;
+  color: white;
+  margin: 0; 
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 20px 0;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+p {
+  font-size: 16px;
+  color: #666;
+}
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 0;
+  background-color: rgb(45, 42, 42);
+  font-family: Arial, sans-serif;
+  height: 100vh; /* Change this */
+}
+
 
 .center-content {
   display: flex;
@@ -61,15 +80,27 @@ body, html {
   align-items: center;
   height: auto; /* adjust as needed */
   flex-direction: column;
+  
+}
+
+#game-score {
+  color: white;
+}
+
+#game-attempt {
+  color: white;
+  height: 30px;
 }
 
 #game-container {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-    padding: 20px;
-    background-color: white;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+  padding: 20px;
+  background-color: rgb(45, 42, 42);
+  border-radius: 10px;
+  border-width: 10px;
 }
 
 #game-img {
@@ -87,8 +118,8 @@ body, html {
   /* align-items: center; */
   /* text-align: center; */
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-  padding: 20px;
-  background-color: white;
+  padding: 10px;
+  background-color: rgb(45, 42, 42);
 }
 
 #word-grid {
@@ -98,20 +129,39 @@ body, html {
     margin-bottom: 20px;
 }
 
-#guess-input {
+#guess-input, input {
     width: 100%;
     padding: 10px;
     font-size: 16px;
     margin-bottom: 10px;
+    color: white;
+    font-size: 15px;
 }
 
 .empty-box {
   width: 20px;
   height: 32px;
   margin-right: 2px;
-  border: 1px solid black;
+  border: 1px solid rgb(122, 121, 121);
   text-align: center;
   text-transform: uppercase;
+  border-radius: 4px;
+  background-color: rgb(33, 32, 32);
+}
+
+.empty-box.correct-letter {
+  background-color: green;
+  color: white;
+}
+
+.empty-box.right-letter {
+  background-color: rgb(191, 191, 1);
+  color: white;
+}
+
+.empty-box.wrong-letter {
+  background-color: rgb(122, 121, 121);
+  color: white;
 }
 
 .guess-row {
@@ -121,23 +171,32 @@ body, html {
 }
 
 .guess-box {
-  width: 20px;
-  height: 32px;
-  margin-right: 2px;
-  text-align: center;
-  border: 1px solid black;
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  background-color: rgb(33, 32, 32);
+  color: white;
+  border: 1px solid rgb(122, 121, 121);
+  cursor: pointer; /* Make it clear that the buttons are clickable */
+  font-size: 18px; /* Adjust the font size as needed */
+  line-height: 40px; /* Vertically center the text */
+  text-align: center; /* Horizontally center the text */
+  border-radius: 4px;
 }
 
-.correct-letter {
+.guess-box.correct-letter {
   background-color: green;
+  color: white;
 }
 
-.wrong-letter {
-  background-color: grey;
+.guess-box.right-letter {
+  background-color: rgb(191, 191, 1);
+  color: white;
 }
 
-.right-letter {
-  background-color: yellow;
+.guess-box.wrong-letter {
+  background-color: rgb(122, 121, 121);
+  color: white;
 }
 
 #keyboard {
@@ -152,40 +211,55 @@ body, html {
   justify-content: center; /* Center the keys horizontally within the row */
 }
 
+.correct-letter {
+  color: green;
+}
+
+.right-letter {
+  color: rgb(191, 191, 1);
+}
+
+.wrong-letter { 
+  color: rgb(122, 121, 121);
+}
+
 .key {
   width: 40px;
   height: 40px;
   margin: 5px;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
+  background-color: rgb(33, 32, 32);
+  color: white;
+  border: 1px solid rgb(122, 121, 121);
   cursor: pointer; /* Make it clear that the buttons are clickable */
   font-size: 18px; /* Adjust the font size as needed */
   line-height: 40px; /* Vertically center the text */
   text-align: center; /* Horizontally center the text */
+  border-radius: 4px;
 }
 
 .key.correct-letter {
   background-color: green;
+  color: white;
 }
 
 .key.right-letter {
-  background-color: yellow;
+  background-color: rgb(191, 191, 1);
 }
 
 .key.wrong-letter {
-  background-color: grey;
+  background-color: rgb(122, 121, 121);
 }
 
 #submit-button {
     margin-top: 20px; /* adjust this value as needed */
     padding: 10px 20px;
-    background-color: #007BFF;
+    background-color: #0056b3;
     color: white;
     border: none;
     cursor: pointer;
 }
 
 #submit-button:hover {
-    background-color: #0056b3;
+    background-color: #1364bc;
 }
 
