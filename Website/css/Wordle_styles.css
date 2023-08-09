@@ -7,6 +7,10 @@
   background-color: rgba(255, 0, 0, 0.1);
 } */
 
+@font-face {
+  font-family: 'Banana Grotesk';
+  src: url('../font/banana-grotesk-regular.otf') format('opentype'); 
+}
 
 header {
   position: relative;
@@ -16,21 +20,18 @@ header {
   align-items: center;
   width: 100%;
   height: 60px;
-  padding: 10px;  /* Added padding around the header */
+  padding: 10px; 
   background-color: rgb(27, 27, 27);
   box-sizing: border-box;
 }
 
-.links {
-  color: white;
-}
 
 .header-details {
   position: absolute;
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  color: white;
+
 }
 
 
@@ -59,13 +60,16 @@ hr {
 }
 
 a {
-  color: #333;
+  color: white;
   text-decoration: none;
   margin-right: 10px;
+  padding: 5px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 a:hover {
   text-decoration: underline;
+  transform: translateY(-5px);
 }
 
 p {
@@ -80,7 +84,7 @@ body {
   justify-content: flex-start;
   margin: 0;
   background-color: rgb(45, 42, 42);
-  font-family: Arial, sans-serif;
+  font-family: 'Banana Grotesk', sans-serif; 
   height: 100vh; /* Change this */
 }
 
@@ -160,21 +164,6 @@ body {
   background-color: rgb(33, 32, 32);
 }
 
-.empty-box.correct-letter {
-  background-color: green;
-  color: white;
-}
-
-.empty-box.right-letter {
-  background-color: rgb(191, 191, 1);
-  color: white;
-}
-
-.empty-box.wrong-letter {
-  background-color: rgb(122, 121, 121);
-  color: white;
-}
-
 .guess-row {
   display: flex;
   justify-content: center;
@@ -182,17 +171,18 @@ body {
 }
 
 .guess-box {
-  width: 40px;
-  height: 40px;
-  margin: 5px;
-  background-color: rgb(33, 32, 32);
-  color: white;
+  width: 20px;
+  height: 32px;
+  margin-right: 2px;
+  padding: 10px;
   border: 1px solid rgb(122, 121, 121);
-  cursor: pointer; /* Make it clear that the buttons are clickable */
-  font-size: 18px; /* Adjust the font size as needed */
-  line-height: 40px; /* Vertically center the text */
-  text-align: center; /* Horizontally center the text */
+  margin-bottom: px;
+  color: white;
+  font-size: 15px;
+  text-align: center;
+  text-transform: uppercase;
   border-radius: 4px;
+  background-color: rgb(33, 32, 32);
 }
 
 .guess-box.correct-letter {
@@ -264,17 +254,18 @@ body {
 #submit-button {
     margin-top: 20px; /* adjust this value as needed */
     padding: 10px 20px;
-    background-color: #0056b3;
+    background-color: #3f4666;
     color: white;
     border: none;
     cursor: pointer;
     border-radius: 4px;
+    box-shadow: 0px 1px 5px 0px rgb(75, 75, 75);
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 #submit-button:hover {
-    background-color: #1364bc;
-    transform: translateY(-7px);
+    background-color: #626d9c;
+    transform: translateY(-5px);
 }
 
 .buttons-container {
@@ -284,23 +275,25 @@ body {
   left: 10px;
   top: 50%;
   transform: translateY(-50%);
-  padding: 10px 50px;
+  padding: 10px;
 }
 
 #how_to_play {
   width: 40px;
   height: 40px;
+  font-size: 25px;
   background-color: rgb(33, 32, 32);
   border: 1px solid rgb(122, 121, 121);
   border-radius: 4px;
   color: white;
-  box-shadow: 0px 1px 5px 0px grey;
+  box-shadow: 0px 1px 5px 0px rgb(98, 98, 98);
   transition: transform 0.3s ease, background-color 0.3s ease;
+  
 }
 
 #how_to_play:hover {
-  background-color: white;
-  transform: translateY(-7px);
+  background-color: rgb(70, 69, 69);
+  transform: translateY(-5px);
 }
 
 #random {
@@ -310,11 +303,55 @@ body {
   border: 1px solid rgb(122, 121, 121);
   border-radius: 4px;
   color: white;
-  box-shadow: 0px 1px 5px 0px grey;
+  box-shadow: 0px 1px 5px 0px rgb(98, 98, 98);
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 #random:hover {
   background-color: white;
-  transform: translateY(-7px);
+  transform: translateY(-5px);
 }
+
+button {
+  border: 0;
+  padding: 0;
+  font-size: 15px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 10em;
+  background-color: rgb(51, 51, 51);
+  padding: 5px; /* Spacing so that hover color does not take up entire chunk */
+  border-radius: 0px 0px 4px 4px; 
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown {
+  display: flex;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgb(33, 32, 32);
+  color: white;
+  padding: 20px;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
