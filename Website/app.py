@@ -91,6 +91,12 @@ async def read_description():
         html_content = file.read()
     return HTMLResponse(content=html_content, status_code=200)
 
+@app.get("/Shopping", response_class=HTMLResponse)
+async def read_description():
+    with open(os.path.join("html", "Shopping.html"), "r") as file:
+        html_content = file.read()
+    return HTMLResponse(content=html_content, status_code=200)
+
 
 @app.get("/Login/CreateUser", response_class=HTMLResponse)
 async def read_description():
