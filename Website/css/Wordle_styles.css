@@ -1,59 +1,93 @@
 /* wordle_styles.css */
 
-  h1 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  hr {
-    border: none;
-    border-top: 1px solid #ccc;
-    margin: 20px 0;
-  }
-  
-  a {
-    color: #333;
-    text-decoration: none;
-    margin-right: 10px;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
-  p {
-    font-size: 16px;
-    color: #666;
-  }
+
+/* Visualize Margins and Padding */
+/* * {
+  outline: 1px solid red;
+  background-color: rgba(255, 0, 0, 0.1);
+} */
+
+@font-face {
+  font-family: 'Banana Grotesk';
+  src: url('../font/banana-grotesk-regular.otf') format('opentype'); 
+}
 
 header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px; /* adjust as needed */
-}
- 
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0;
-    background-color: #fafafa;
-    font-family: Arial, sans-serif;
-     height: 100vh; /* Change this */
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  padding: 10px; 
+  background-color: #1a1b26;
+  box-sizing: border-box;
 }
 
-/* body, html {
-  width: 100%;
-  height: 100%;
+
+.header-details {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+
+}
+
+
+nav {
+  display: flex;
+  gap: 10px;
+}
+
+h1 {
+  color: white;
+  font-size: 24px;
+}
+
+h2 {
+  font-size: 20px;
+  color: white;
+  margin: 0; 
+  margin-bottom: 10px;
+  display: flex;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 20px 0;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  margin-right: 10px;
+  padding: 5px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+  transform: translateY(-5px);
+}
+
+p {
+  font-size: 16px;
+  color: #666;
+}
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   margin: 0;
-  padding: 0;
-} */
+  background-color: #24283b;
+  font-family: 'Banana Grotesk', sans-serif; 
+  height: 100vh; /* Change this */
+}
+
 
 .center-content {
   display: flex;
@@ -63,17 +97,29 @@ body {
   flex-direction: column;
 }
 
+#game-score {
+  color: white;
+}
+
+#game-attempt {
+  color: white;
+  height: 30px;
+}
+
 #game-container {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-    padding: 20px;
-    background-color: white;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+  padding: 20px;
+  background-color: #24283b;
+  border-radius: 10px;
+  border-width: 10px;
 }
 
 #game-img {
   max-width: 100%; /* This will ensure that the image doesn't overflow its container */
+  margin-top: 50px;
 }
 
 #image-container {
@@ -87,8 +133,8 @@ body {
   /* align-items: center; */
   /* text-align: center; */
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-  padding: 20px;
-  background-color: white;
+  padding: 10px;
+  background-color: #24283b;
 }
 
 #word-grid {
@@ -98,20 +144,26 @@ body {
     margin-bottom: 20px;
 }
 
-#guess-input {
+#guess-input, input {
     width: 100%;
     padding: 10px;
     font-size: 16px;
     margin-bottom: 10px;
+    color: white;
+    font-size: 15px;
+    box-shadow: 0px 1px 5px 0px rgb(98, 98, 98);
 }
+
 
 .empty-box {
   width: 20px;
-  height: 32px;
+  height: 30px;
   margin-right: 2px;
-  border: 1px solid black;
+  border: 1px solid rgb(122, 121, 121);
   text-align: center;
   text-transform: uppercase;
+  border-radius: 4px;
+  background-color: rgb(33, 32, 32);
 }
 
 .guess-row {
@@ -124,20 +176,30 @@ body {
   width: 20px;
   height: 32px;
   margin-right: 2px;
+  padding: 10px;
+  border: 1px solid rgb(122, 121, 121);
+  margin-bottom: px;
+  color: white;
+  font-size: 15px;
   text-align: center;
-  border: 1px solid black;
+  text-transform: uppercase;
+  border-radius: 4px;
+  background-color: rgb(33, 32, 32);
 }
 
-.correct-letter {
+.guess-box.correct-letter {
   background-color: green;
+  color: white;
 }
 
-.wrong-letter {
-  background-color: grey;
+.guess-box.right-letter {
+  background-color: rgb(191, 191, 1);
+  color: white;
 }
 
-.right-letter {
-  background-color: yellow;
+.guess-box.wrong-letter {
+  background-color: rgb(122, 121, 121);
+  color: white;
 }
 
 #keyboard {
@@ -152,43 +214,212 @@ body {
   justify-content: center; /* Center the keys horizontally within the row */
 }
 
+.correct-letter {
+  color: green;
+}
+
+.right-letter {
+  color: rgb(191, 191, 1);
+}
+
+.wrong-letter { 
+  color: rgb(122, 121, 121);
+}
+
 .key {
   width: 40px;
   height: 40px;
   margin: 5px;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
+  background-color: rgb(33, 32, 32);
+  color: white;
+  border: 1px solid rgb(122, 121, 121);
   cursor: pointer; /* Make it clear that the buttons are clickable */
   font-size: 18px; /* Adjust the font size as needed */
   line-height: 40px; /* Vertically center the text */
   text-align: center; /* Horizontally center the text */
+  border-radius: 4px;
+  box-shadow: 0px 1px 5px 0px rgb(98, 98, 98);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.key:hover{
+  background-color: rgb(70, 69, 69);
+  transform: translateY(-5px);
 }
 
 .key.correct-letter {
   background-color: green;
+  color: white;
 }
 
 .key.right-letter {
-  background-color: yellow;
+  background-color: rgb(191, 191, 1);
 }
 
 .key.wrong-letter {
-  background-color: grey;
+  background-color: rgb(122, 121, 121);
 }
 
 #submit-button {
     margin-top: 20px; /* adjust this value as needed */
     padding: 10px 20px;
-    background-color: #007BFF;
+    background-color: #3f4666;
     color: white;
     border: none;
     cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0px 1px 5px 0px rgb(75, 75, 75);
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 #submit-button:hover {
-    background-color: #0056b3;
+    background-color: #626d9c;
+    transform: translateY(-5px);
 }
 
+.buttons-container {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 5px;
+}
+
+/* hides dropdown content by default */
+.how-to-play-dropdown-content {
+  display: block; 
+  opacity: 0;     
+  max-height: 0;  
+  overflow: hidden; 
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  z-index: 1;
+  border-radius: 4px;
+  left: align-items; 
+  top: 67px;
+  transition: opacity 0.5s, max-height 0.3s; /* transition animation for both opacity and max-height */
+}
+
+#how-to-play {
+  width: 40px;
+  height: 40px;
+  font-size: 25px;
+  background-color: rgb(33, 32, 32);
+  border: 1px solid rgb(122, 121, 121);
+  border-radius: 4px;
+  color: white;
+  box-shadow: 0px 1px 5px 0px rgb(98, 98, 98);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#how-to-play:hover {
+  background-color: rgb(70, 69, 69);
+  transform: translateY(5px);
+}
+
+.how-to-play-dropdown-content {
+  background-color: #1a1b26;
+  box-shadow: 0px 1px 5px 0px rgb(98, 98, 98);
+  height: 500px;
+  width: 400px;
+  overflow: auto;
+}
+
+/* style dropwdown content */
+.how-to-play-dropdown-content p {
+  color: white;
+  margin: 20px 10px;
+  font-size: 20px;
+  text-align: center;
+  overflow: auto;
+}
+
+/* show dropdown menu when hovering */
+#how-to-play:hover + .how-to-play-dropdown-content {
+  opacity: 1;
+  max-height: 1000px;
+}
+
+.dropdown-button-icon {
+  vertical-align: middle;
+  line-height: 40px;
+}
+
+.dropdown-content {
+  display: block;
+  position: absolute;
+  overflow: hidden;
+  opacity: 0;
+  top: 67px;
+  right: 0;
+  min-width: 160px;
+  background-color: #1a1b26;
+  padding: 0;
+  border-radius: 4px 0px 4px 4px; 
+  z-index: 1;
+  max-height: 0;
+  transition: max-height 0.5s ease, opacity 0.4s ease;
+    
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.dropdown-container {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 5px;
+} 
+
+#dropdown-icon {
+  position: relative;
+  align-items: center;
+  justify-content: relative;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  padding: 0px;
+  font-size: 40px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+/* style dropdown icon */
+#dropdown-icon:hover {
+  background-color: rgb(88, 87, 87);
+  transform: translateY(5px);
+}
+
+/* show dropdown menu on hover */
+#dropdown-icon:hover + .dropdown-content,
+.dropdown-container:hover .dropdown-content {
+    opacity: 1;
+    max-height: 300px;
+}
+
+.dropdown-container:hover #dropdown-icon {
+  background-color: rgb(70, 69, 69);
+  transform: translateY(5px);
+}
+
+.dropdown-content a:hover {
+  background-color: rgb(88, 87, 87);
+}
 
 .slider-container {
   position: relative;

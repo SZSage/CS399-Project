@@ -5,41 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="../css/Wordle_styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
 
     <header>
-        <img src="#" alt="Logo of company">
-        <nav>
-            <a href="/Login" target="_blank">Login</a>
-            <a href="/Game_description" target="_blank">Game Description</a>
-            <a href="/Company" target="_blank">Company</a>
-            <a href="/Contact_us" target="_blank">Contact us</a>
-        </nav>
-        <h1>Placele</h1>
-        <hr>
-        <span id="game-score">Score: 0</span>
-        <span id="game-attempt">Attempt left: 5</span>
+    <!-- <img src="#" alt="Logo of company"> -->
+        <div class="buttons-container"> 
+            <button id="how-to-play" type="button">?</button>
+            <div class="how-to-play-dropdown-content">
+                <p> How to play</p>
+            </div>
+        </div>
+
+        <h1>Guess Flag</h1>
+        <div class="dropdown-container">
+            <button id="dropdown-icon" type="button">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/Login" target="_blank">Login</a>
+                <a href="/Game_description" target="_blank">Game Description</a>
+                <a href="/Company" target="_blank">Company</a>
+                <a href="/Contact_us" target="_blank">Contact us</a>
+            </div>
+        </div>    
     </header>
     
     <main>
         <section class="center-content">
             <img src="" alt="game image" id="game-img">
         </section>    
-
+        
         <section id="game-container" class="center-content">
-            <h1> Enter Guess Here </h1>
+            <span id="game-score">Score: 0</span>
+            <span id="game-attempt">Attempts left: 5</span>
+            <h2> Enter Guess Here </h2>
             <div id="boxes-container">   
                 <!-- word grid will be generated with JS -->
             </div>
             <button id="submit-button"> Submit guess </button>
+
+            
         </section>
 
         <section id="guess-result">
         </section>
 
         <section id="keyboard" class="center-content">
-            <div id="keyboard-row">
+            <div class="keyboard-row">
                 <button class="key" onclick="handleKeyPress('Q')">Q</button>
                 <button class="key" onclick="handleKeyPress('W')">W</button>
                 <button class="key" onclick="handleKeyPress('E')">E</button>
