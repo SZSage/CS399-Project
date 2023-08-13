@@ -156,8 +156,8 @@ body {
 
 
 .empty-box {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   margin-right: 2px;
   border: 1px solid rgb(122, 121, 121);
   text-align: center;
@@ -173,8 +173,8 @@ body {
 }
 
 .guess-box {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   margin-right: 2px;
   padding: 10px;
   border: 1px solid rgb(122, 121, 121);
