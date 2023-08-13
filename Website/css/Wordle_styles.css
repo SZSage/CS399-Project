@@ -118,8 +118,8 @@ body {
 }
 
 #game-img {
+  padding: 40px;
   max-width: 100%; /* This will ensure that the image doesn't overflow its container */
-  margin-top: 50px;
 }
 
 #image-container {
@@ -157,7 +157,7 @@ body {
 
 .empty-box {
   width: 20px;
-  height: 30px;
+  height: 20px;
   margin-right: 2px;
   border: 1px solid rgb(122, 121, 121);
   text-align: center;
@@ -174,11 +174,10 @@ body {
 
 .guess-box {
   width: 20px;
-  height: 32px;
+  height: 20px;
   margin-right: 2px;
   padding: 10px;
   border: 1px solid rgb(122, 121, 121);
-  margin-bottom: px;
   color: white;
   font-size: 15px;
   text-align: center;
