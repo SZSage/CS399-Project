@@ -151,8 +151,14 @@ function processGuess() {
 		clearKeyColors();
 		setRandomImage();
 		removeGuessRows(guessBoxes);
-		score += 10;
-		setScore();
+		if (incorrectAttempts >= 3) {
+			score += 5;
+			setScore();
+		}
+		else {
+			score += 10;
+			setScore();
+		}
 		attemptTime = 5;
 		incorrectAttempts = 0;
 		setAttempt();
@@ -164,7 +170,7 @@ function processGuess() {
 		clearKeyColors();
 		setRandomImage();
 		removeGuessRows(guessBoxes);
-		score -= 10;
+		/*score -= 10;*/
 		setScore();
 		attemptTime = 5;
 		incorrectAttempts = 0;
