@@ -147,17 +147,16 @@ body {
 #guess-input, input {
     width: 100%;
     padding: 10px;
-    font-size: 16px;
+    font-size: 18px;
     margin-bottom: 10px;
     color: white;
-    font-size: 15px;
     box-shadow: 0px 1px 5px 0px rgb(98, 98, 98);
 }
 
 
 .empty-box {
-  width: 15px;
-  height: 15px;
+  width: 20px;
+  height: 20px;
   margin-right: 2px;
   border: 1px solid rgb(122, 121, 121);
   text-align: center;
@@ -323,7 +322,7 @@ body {
 .how-to-play-dropdown-content {
   background-color: #1a1b26;
   box-shadow: 0px 1px 5px 0px rgb(98, 98, 98);
-  height: 500px;
+  height: 550px;
   width: 400px;
   overflow: auto;
 }
@@ -422,9 +421,11 @@ body {
 }
 
 .slider-container {
-  position: relative;
-  width: 20%;
-  max-width: 800px;
+  position: absolute;
+  left: 0; /* Align to the left */
+  bottom: 0;
+  width: 10%;
+  max-width: 400px;
   /* margin: 0 auto; */
   overflow: hidden;
 }
