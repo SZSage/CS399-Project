@@ -203,36 +203,35 @@ function clearBoxes(guessBoxes) {
 // Function to compare the user's guess with the current word from the array
 function compareGuess(guessBoxes) {
 	const currentWord = currentCountry.name.toUpperCase();
-	const userGuess = Array.from(guessBoxes).map(box => box.value.toUpperCase()).join('');
-
-	const letterCount = {};
-	for (let letter of currentWord) {
-		letterCount[letter] = (letterCount[letter] || 0) + 1;
-	}
 
 	for (let i = 0; i < currentWord.length; i++) {
 		let box = guessBoxes[i];
-		let key = document.querySelector(`#keyboard .key[onclick="handleKeyPress('${box.value.toUpperCase()}')"]`);
-
+		let key = document.querySelector(`#keyboard .key[onclick="handleKeyPress('${box.value.toUpperCase()}')"]`);		
+		
 		if (box.value.toUpperCase() === currentWord[i]) {
 			box.classList.add("correct-letter");
 			key.classList.add("correct-letter");
-			letterCount[box.value.toUpperCase()]--; // Decrease the count for this letter
-		} else {
-			// Check how many times this letter appears in the word
-			let countInWord = letterCount[box.value.toUpperCase()] || 0;
-			let countInGuess = Array.from(userGuess).filter(c => c === box.value.toUpperCase()).length;
+		} else if (currentWord.includes(box.value.toUpperCase())) {
 
-			if (countInWord > 0 && countInGuess <= countInWord) {
-				box.classList.add("right-letter");
-				key.classList.add("right-letter");
-				letterCount[box.value.toUpperCase()]--; // Decrease the count for this letter
-			} else {
-				box.classList.add("wrong-letter");
-				key.classList.add("wrong-letter");
-			}
+			box.classList.add("right-letter");
+			key.classList.add("right-letter");
+		} else {
+			box.classList.add("wrong-letter");
+			key.classList.add("wrong-letter");
 		}
 	}
+
+	// handles duplicate letters 
+	for (let i = 0; i < currentWord.length; i++) {
+		let letter = currentWord[i];
+		let key = document.querySelector(`#keyboard .key[onclick="handleKeyPress('${letter}')"]`);
+
+		if (guessBoxes[i].value.toUpperCase() === letter) {
+			key.classList.remove("right-letter", "wrong-letter");
+			key.classList.add("correct-letter");
+		}
+	}
+ 
 }
 
 function handleKeyPress(letter) {
