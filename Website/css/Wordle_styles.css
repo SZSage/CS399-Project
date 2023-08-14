@@ -118,8 +118,8 @@ body {
 }
 
 #game-img {
+  padding: 40px;
   max-width: 100%; /* This will ensure that the image doesn't overflow its container */
-  margin-top: 50px;
 }
 
 #image-container {
@@ -156,8 +156,8 @@ body {
 
 
 .empty-box {
-  width: 20px;
-  height: 30px;
+  width: 15px;
+  height: 15px;
   margin-right: 2px;
   border: 1px solid rgb(122, 121, 121);
   text-align: center;
@@ -173,12 +173,11 @@ body {
 }
 
 .guess-box {
-  width: 20px;
-  height: 32px;
+  width: 15px;
+  height: 15px;
   margin-right: 2px;
   padding: 10px;
   border: 1px solid rgb(122, 121, 121);
-  margin-bottom: px;
   color: white;
   font-size: 15px;
   text-align: center;
@@ -234,9 +233,10 @@ body {
   color: white;
   border: 1px solid rgb(122, 121, 121);
   cursor: pointer; /* Make it clear that the buttons are clickable */
-  font-size: 18px; /* Adjust the font size as needed */
-  line-height: 40px; /* Vertically center the text */
-  text-align: center; /* Horizontally center the text */
+  font-size: 18px;
+  display: flex; /* Add this */
+  justify-content: center; /* Add this */
+  align-items: center; /* Add this */
   border-radius: 4px;
   box-shadow: 0px 1px 5px 0px rgb(98, 98, 98);
   transition: transform 0.3s ease, background-color 0.3s ease;

@@ -106,6 +106,13 @@ function processGuess() {
 		userGuess += box.value;
 	});
 
+	// Validate the user's guess
+	const isValidGuess = /^[A-Za-z]+$/.test(userGuess);
+	if (!isValidGuess) {
+		alert('Only characters are allowed!');
+		return;
+	}
+
 	const currentWord = currentCountry.name;
 
 	// Check if the length of the user's guess matches the length of the current word
@@ -144,8 +151,14 @@ function processGuess() {
 		clearKeyColors();
 		setRandomImage();
 		removeGuessRows(guessBoxes);
-		score += 10;
-		setScore();
+		if (incorrectAttempts >= 3) {
+			score += 5;
+			setScore();
+		}
+		else {
+			score += 10;
+			setScore();
+		}
 		attemptTime = 5;
 		incorrectAttempts = 0;
 		setAttempt();
@@ -157,7 +170,7 @@ function processGuess() {
 		clearKeyColors();
 		setRandomImage();
 		removeGuessRows(guessBoxes);
-		score -= 10;
+		/*score -= 10;*/
 		setScore();
 		attemptTime = 5;
 		incorrectAttempts = 0;
