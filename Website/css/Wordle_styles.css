@@ -111,7 +111,7 @@ body {
   align-items: center;
   text-align: center;
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-  padding: 20px;
+  padding: 20px;  
   background-color: #24283b;
   border-radius: 10px;
   border-width: 10px;
@@ -183,6 +183,7 @@ body {
   text-transform: uppercase;
   border-radius: 4px;
   background-color: rgb(33, 32, 32);
+  box-shadow: 0px 1px 5px 0px rgb(98, 98, 98);
 }
 
 .guess-box.correct-letter {
@@ -353,11 +354,11 @@ body {
   overflow: hidden;
   opacity: 0;
   top: 67px;
-  right: 0;
+  right: 10px;
   min-width: 160px;
   background-color: #1a1b26;
   padding: 0;
-  border-radius: 4px 0px 4px 4px; 
+  border-radius: 4px; 
   z-index: 1;
   max-height: 0;
   transition: max-height 0.5s ease, opacity 0.4s ease;
@@ -424,10 +425,11 @@ body {
   position: absolute;
   left: 0; /* Align to the left */
   bottom: 0;
-  width: 10%;
+  width: 15%;
   max-width: 400px;
   /* margin: 0 auto; */
   overflow: hidden;
+  border-radius: 4px;
 }
 
 .slider {
